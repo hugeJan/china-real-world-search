@@ -1,6 +1,13 @@
 # Mainland China Source Routing
 
-Choose sources by **which system generates the fact**, not by a universal prestige ranking.
+Choose sources by **what job they need to perform** and by **which system generates the decisive fact**.
+
+For practical tasks, separate two lanes:
+
+- **Discovery lane** — maximize recall of real current options.
+- **Proof lane** — verify the claims that matter: rules, identity, official relationship, compatibility, and current state.
+
+A source can be excellent in one lane and weak in the other.
 
 ## Layer model
 
@@ -8,7 +15,7 @@ Think in six layers:
 
 1. **Legal / administrative fact** — laws, decisions, registrations, permits, filings, procurement, judgments.
 2. **Statistical / structured fact** — official statistics, structured financial/business datasets.
-3. **Operational execution** — apps, mini programs, booking/transaction systems, local service halls, operator systems.
+3. **Operational execution** — apps, mini programs, booking/transaction systems, local service halls, third-party service providers, operator systems.
 4. **On-the-ground / social perception** — maps, local-life platforms, social media, forums, recent user experience.
 5. **Physical observation** — POI/geospatial data, remote sensing, public imagery.
 6. **Historical / version** — gazettes, old PDFs, library/network archives, web archives.
@@ -19,22 +26,51 @@ A task may require more than one layer.
 
 ### Rules, eligibility, statutory fee, required materials
 
-Closest source:
+Closest proof source:
 - competent ministry/administration;
 - current provincial/municipal/district service guide;
 - government gazette or formal document when legal versioning matters.
 
-### Actual local execution
+These sources establish **what is required**, not necessarily every current way to satisfy the requirement.
 
-Actively search:
+### Current channel discovery
+
+Search broadly:
 - national/provincial/municipal 政务平台;
 - local government App;
 - 微信公众号/小程序/搜一搜;
 - 支付宝小程序/市民中心;
-- appointment or self-service systems;
-- exact service hall/operator notice.
+- appointment/self-service systems;
+- service-hall notices;
+- current third-party mini programs/service providers;
+- maps/local-life/community sources for practical leads.
 
-Do not assume the web guide exposes every executable service entry.
+Do not assume the web guide lists every executable channel.
+
+Do not reject a third-party candidate merely because it does not appear in the current government guide.
+
+### Verify the channel relationship separately
+
+For a serious candidate, determine whether it is:
+- official self-operated;
+- official-platform integrated;
+- currently officially named/recommended;
+- compatible third-party;
+- only practically reported;
+- provider self-claim only;
+- unknown.
+
+Also determine current usability separately.
+
+Read [channel-verification.md](channel-verification.md) for the full model.
+
+### Historical official channels
+
+An old government article can prove that a platform/service existed or was officially integrated at that time.
+
+It does not prove current availability.
+
+When an old official entry is no longer visible, search for migration/replacement and keep current third-party discovery open.
 
 ### Human fallback
 
@@ -64,7 +100,7 @@ Route by the state verb:
 - 施工许可/竣工 -> housing/construction/planning authority;
 - 开工/投产 -> project owner/company + local authority + independent operational/physical trace where needed.
 
-Never let a “计划投产” article prove actual production.
+Never let a `计划投产` article prove actual production.
 
 ## 3. Judicial, enforcement, procurement
 
@@ -90,6 +126,10 @@ Closest operational sources:
 - 高德/百度地图 for POI, routes, traffic, walking, transit, branch metadata;
 - official metro/bus/airport/rail/operator notices for disruptions and first/last service.
 
+Discovery can also use:
+- local-life platforms;
+- recent user reports for transfer friction, entrances, queues, and actual walking burden.
+
 When cost + convenience matter, compare realistic multimodal options rather than defaulting to end-to-end taxi.
 
 Map evidence proves location/route metadata, not corporate legal identity or statutory land use.
@@ -108,17 +148,25 @@ Use operating airline/airport for authoritative disruption and check-in rules. C
 
 ### Coaches/ferries/local intercity
 
-Prefer operator, station, transport authority, official account/mini program, or recognized ticketing system.
+Prefer operator, station, transport authority, official account/mini program, or recognized ticketing system for proof/current state.
+
+Use aggregators and community sources to discover combinations or local transfer details.
 
 ## 7. Healthcare service access
 
-For registration/logistics:
+For registration/logistics, use two lanes.
 
+Discovery:
+- hospital name + 微信/支付宝/挂号/小程序;
+- local/provincial health platforms;
+- maps for campus/entrance;
+- current user reports for queue/wayfinding.
+
+Verification:
 1. hospital official site/account/mini program;
 2. local/provincial health platform;
 3. officially integrated registration service;
-4. map for exact campus/entrance;
-5. community posts only for queue/wayfinding experience.
+4. issuer/developer identity for unfamiliar third parties.
 
 Verify campus, department, doctor/date, identity requirements, and issuer before payment.
 
@@ -131,7 +179,7 @@ Use a combination:
 3. merchant official channel/phone for reservations and branch-specific policy;
 4. 小红书/抖音/微博 for recent lived experience or visual clues.
 
-Recent social evidence may beat an old corporate web page for “is this branch actually operating today?”, but it does not establish licenses or legal status.
+Recent social evidence may beat an old corporate web page for `is this branch actually operating today?`, but it does not establish licenses or legal status.
 
 ## 9. WeChat ecosystem
 
@@ -140,9 +188,16 @@ Use 微信搜一搜 when the answer may live in:
 - public-account articles;
 - mini programs;
 - video accounts;
-- service entries.
+- service entries;
+- third-party service providers.
 
-Search exact institution/service/project name + locality + action/state.
+For discovery, search exact service/action + locality even when the provider name is unknown.
+
+After discovering a candidate, verify:
+- exact mini-program/account identity;
+- operator/主体 when visible;
+- relationship to the competent authority;
+- current usability.
 
 Open-web bridges can help discovery but do not represent full WeChat coverage.
 
@@ -152,24 +207,45 @@ Search Alipay for:
 - government/public services;
 - city services;
 - transport/health/utility workflows;
-- merchant mini programs.
+- merchant and third-party mini programs.
 
 Verify issuer before identity or payment actions.
+
+Do not infer `official` merely because the service is accessible inside Alipay.
 
 ## 11. Social platforms and vertical communities
 
 Use by strength:
 
 - **微博** — rapid public statements, event timelines, official short notices, eyewitness leads;
-- **微信** — local institutions, hospitals, schools, government-service long-form notices and service entries;
+- **微信** — local institutions, hospitals, schools, government-service notices and service entries;
 - **抖音/快手** — recent visual field evidence and local operations;
 - **小红书** — travel, consumer service, local process experience, practical pitfalls;
 - **知乎/论坛** — terminology, workflows, niche technical/industry leads;
 - **Bilibili** — demonstrations and long-form walkthroughs.
 
-Use social platforms to discover vocabulary, failure modes, or recent reality. Trace decisive factual claims to stronger sources.
+Use social platforms aggressively for **discovery, vocabulary, failure modes, and recent practical evidence**.
 
-## 12. Shopping and products
+Trace decisive claims such as `officially designated`, `statutory requirement`, or `legal status` to sources suited to those claims.
+
+## 12. SEO/self-media/service-provider pages
+
+These are not automatically bad sources.
+
+Best uses:
+- discover current provider names;
+- discover terminology and platform entry names;
+- find recent product/service changes;
+- identify what claims need verification.
+
+Weak uses:
+- proving their own `official recognition` claims;
+- proving statutory requirements;
+- proving universal compatibility.
+
+Treat promotional language as a proposition to verify.
+
+## 13. Shopping and products
 
 Route claims separately:
 - product identity/spec/warranty -> brand/official store;
@@ -179,7 +255,7 @@ Route claims separately:
 
 Distinguish MSRP, platform price, coupon price, subsidy, trade-in, and second-hand price.
 
-## 13. Historical and academic research
+## 14. Historical and academic research
 
 Use:
 - government gazettes and original PDFs;
@@ -190,7 +266,9 @@ Use:
 
 An archive's absence is never proof of historical nonexistence.
 
-## 14. Physical-world verification
+Historical official evidence proves historical status only unless current status is independently verified.
+
+## 15. Physical-world verification
 
 For large visible changes consider:
 - map/POI evolution;
@@ -200,11 +278,11 @@ For large visible changes consider:
 
 Physical evidence can verify change or presence, but usually cannot by itself prove legal ownership, causal responsibility, or intent.
 
-## 15. Consumer rights and complaints
+## 16. Consumer rights and complaints
 
-Prefer the competent official system:
+Prefer the competent official system for rights/procedure:
 - local government-service issue -> 12345 where appropriate;
 - consumer-market issue -> official 12315 / market-regulation channel;
 - sector-specific issue -> competent regulator or operator complaint channel.
 
-Forum advice is not the final authority for complaint rights or procedure.
+Use community sources to discover practical escalation routes and recurring failure modes, but not as the final authority for legal rights.
