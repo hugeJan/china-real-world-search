@@ -1,0 +1,4 @@
+interface:
+  display_name: "China Real-World Search"
+  short_description: "Verify mainland-China real-world information"
+  default_prompt: "Use $china-real-world-search to find the system that actually generates the relevant fact, verify the current China-local execution path, and return an actionable or evidence-backed answer."
