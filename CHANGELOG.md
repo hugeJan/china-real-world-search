@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.1 — Concrete-candidate discovery hardening
+
+### Changed
+
+- Added a **concrete-candidate discovery gate** for practical service questions.
+- Practical searches should now identify 2-3 named current candidates when such options are reasonably discoverable, instead of stopping at categories such as `第三方小程序`, `微信/支付宝`, `照相馆`, or `线下窗口`.
+- Added an explicit fallback rule: if concrete candidates cannot be named, attempt multiple materially different discovery routes and state the visibility/access limitation rather than pretending generic categories are a complete answer.
+- Added artifact/outcome-centered query strategy so the skill searches the exact required receipt/document/service rather than only the broad surrounding task.
+- Added `backend mechanism != user-facing channel`: a backend upload/inspection requirement does not by itself prove the user must use a particular provider type.
+- Added official-terminology fidelity for required forms, receipts, certificates, statuses, and fees; near-synonyms must not be silently merged.
+- Added regressions for `generation != acceptance`, generic-category answers, and false `must use a photo studio` inferences.
+- Updated plugin prompts and release tests to enforce named-candidate discovery.
+- Extended the repository validator to check release-version consistency.
+
+### Why
+
+Version 1.1 improved recall by allowing current third-party channels into the search space, but an agent could still satisfy `discover broadly` superficially: acknowledge that online third-party services exist, then answer with generic classes instead of discovering concrete provider/platform names.
+
+Version 1.1.1 makes discovery completion observable: for actionable service questions, entity discovery must produce concrete names when they are reasonably discoverable, while evidence verification remains separate and strict.
+
 ## 1.1.0 — Practical discovery without authority overclaiming
 
 ### Changed
