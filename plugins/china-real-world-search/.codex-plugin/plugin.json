@@ -1,7 +1,7 @@
 {
   "name": "china-real-world-search",
-  "version": "1.1.0",
-  "description": "Research and solve mainland-China real-world questions by broadly discovering current channels, then verifying decisive claims against the systems that actually generate them.",
+  "version": "1.1.1",
+  "description": "Research and solve mainland-China real-world questions by discovering concrete current channels before verifying decisive claims against the systems that actually generate them.",
   "author": {
     "name": "hugeJan",
     "url": "https://github.com/hugeJan"
@@ -21,17 +21,17 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "China Real-World Search",
-    "shortDescription": "Find what works in China, then verify what it is",
-    "longDescription": "Research mainland-China real-world questions by broadly discovering current practical channels across China-native platforms, then separately verifying rules, channel identity, official relationship, compatibility, current usability, and decisive facts against the systems that actually generate them.",
+    "shortDescription": "Find concrete China-local options, then verify them",
+    "longDescription": "Research mainland-China real-world questions by discovering concrete current channels across China-native platforms, then separately verifying rules, exact terminology, provider identity, official relationship, target-process compatibility, current usability, and decisive facts.",
     "developerName": "hugeJan",
     "category": "Productivity",
     "websiteURL": "https://github.com/hugeJan/china-real-world-search",
     "privacyPolicyURL": "https://github.com/hugeJan/china-real-world-search/blob/main/PRIVACY.md",
     "termsOfServiceURL": "https://github.com/hugeJan/china-real-world-search/blob/main/TERMS.md",
     "defaultPrompt": [
-      "先广泛找到现在真正能用的中国本地渠道，再核实它到底是不是官方、是否兼容。",
-      "核实这个中国大陆现实信息，区分规则、执行、渠道身份和当前状态。",
-      "帮我找可实际执行的中国本地方案，不要因为官网没列就漏掉真实可用渠道。"
+      "先找出现在具体能用的平台/渠道名称，再分别核实它是否官方、是否兼容。",
+      "核实这个中国大陆现实信息，保留官方原始术语，并区分规则、执行、渠道身份和当前状态。",
+      "帮我找真正可执行的中国本地方案，不要用泛泛的“第三方小程序/线下办理”代替具体候选。"
     ],
     "brandColor": "#D92D20",
     "composerIcon": "./assets/icon.svg",
