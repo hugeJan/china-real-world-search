@@ -11,6 +11,8 @@ PLUGIN = ROOT / "plugins" / "china-real-world-search"
 MANIFEST = PLUGIN / ".codex-plugin" / "plugin.json"
 MARKETPLACE = ROOT / ".agents" / "plugins" / "marketplace.json"
 SKILLS_DIR = PLUGIN / "skills"
+PUBLISHING = ROOT / "PUBLISHING.md"
+CHANGELOG = ROOT / "CHANGELOG.md"
 
 errors: list[str] = []
 
@@ -42,6 +44,14 @@ def resolve_plugin_path(value: str, field: str) -> Path | None:
     return resolved
 
 
+def read_text(path: Path) -> str | None:
+    try:
+        return path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        fail(f"missing file: {path.relative_to(ROOT)}")
+        return None
+
+
 manifest = load_json(MANIFEST)
 marketplace = load_json(MARKETPLACE)
 
@@ -51,9 +61,11 @@ if manifest:
             fail(f"manifest missing required field: {field}")
 
     name = manifest.get("name", "")
+    version = manifest.get("version", "")
+
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
         fail("manifest name must be kebab-case")
-    if not re.fullmatch(r"\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?", manifest.get("version", "")):
+    if not re.fullmatch(r"\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?", version):
         fail("manifest version must be semantic-version shaped")
 
     plugin_manifest_dir = PLUGIN / ".codex-plugin"
@@ -80,6 +92,22 @@ if manifest:
             path = resolve_plugin_path(interface[field], f"interface.{field}")
             if path and not path.is_file():
                 fail(f"interface.{field} points to a missing file")
+
+    publishing_text = read_text(PUBLISHING)
+    if publishing_text is not None:
+        match = re.search(r"Current plugin version:\s*\*\*(\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)\*\*", publishing_text)
+        if not match:
+            fail("PUBLISHING.md missing parseable Current plugin version")
+        elif match.group(1) != version:
+            fail(f"version mismatch: manifest={version}, PUBLISHING={match.group(1)}")
+
+    changelog_text = read_text(CHANGELOG)
+    if changelog_text is not None:
+        match = re.search(r"(?m)^##\s+(\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)\b", changelog_text)
+        if not match:
+            fail("CHANGELOG.md missing a version heading")
+        elif match.group(1) != version:
+            fail(f"version mismatch: manifest={version}, CHANGELOG={match.group(1)}")
 
 if SKILLS_DIR.exists():
     skill_dirs = [p for p in SKILLS_DIR.iterdir() if p.is_dir()]
@@ -144,9 +172,9 @@ if marketplace:
             if not entry.get("category"):
                 fail("marketplace entry missing category")
 
-for legal in ("LICENSE", "PRIVACY.md", "TERMS.md", "PUBLISHING.md"):
-    if not (ROOT / legal).is_file():
-        fail(f"missing release file: {legal}")
+for release_file in ("LICENSE", "PRIVACY.md", "TERMS.md", "PUBLISHING.md", "CHANGELOG.md"):
+    if not (ROOT / release_file).is_file():
+        fail(f"missing release file: {release_file}")
 
 if errors:
     print("Plugin validation failed:")
@@ -158,3 +186,5 @@ print("Plugin validation passed")
 print(f" - manifest: {MANIFEST.relative_to(ROOT)}")
 print(f" - marketplace: {MARKETPLACE.relative_to(ROOT)}")
 print(f" - bundled skill: {SKILLS_DIR / 'china-real-world-search' / 'SKILL.md'}")
+if manifest:
+    print(f" - release version: {manifest.get('version')}")
