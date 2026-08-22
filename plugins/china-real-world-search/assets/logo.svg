@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="China Real-World Search logo">
+  <rect width="512" height="512" rx="112" fill="#D92D20"/>
+  <path d="M256 88c-82.8 0-150 67.2-150 150 0 112.7 150 198 150 198s150-85.3 150-198c0-82.8-67.2-150-150-150Z" fill="none" stroke="#fff" stroke-width="34"/>
+  <circle cx="256" cy="238" r="52" fill="#fff"/>
+  <path d="M206 238h100M256 188v100" stroke="#D92D20" stroke-width="18" stroke-linecap="round"/>
+</svg>
