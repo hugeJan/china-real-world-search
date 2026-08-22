@@ -5,7 +5,7 @@ Choose sources by **what job they need to perform** and by **which system genera
 For practical tasks, separate two lanes:
 
 - **Discovery lane** — maximize recall of real current options.
-- **Proof lane** — verify the claims that matter: rules, identity, official relationship, compatibility, and current state.
+- **Proof lane** — verify rules, identity, current usability, target-process compatibility, and official relationship as separate claims.
 
 A source can be excellent in one lane and weak in the other.
 
@@ -15,7 +15,7 @@ Think in six layers:
 
 1. **Legal / administrative fact** — laws, decisions, registrations, permits, filings, procurement, judgments.
 2. **Statistical / structured fact** — official statistics, structured financial/business datasets.
-3. **Operational execution** — apps, mini programs, booking/transaction systems, local service halls, third-party service providers, operator systems.
+3. **Operational execution** — apps, mini programs, booking/transaction systems, local service halls, third-party providers, operator systems.
 4. **On-the-ground / social perception** — maps, local-life platforms, social media, forums, recent user experience.
 5. **Physical observation** — POI/geospatial data, remote sensing, public imagery.
 6. **Historical / version** — gazettes, old PDFs, library/network archives, web archives.
@@ -49,18 +49,24 @@ Do not assume the web guide lists every executable channel.
 
 Do not reject a third-party candidate merely because it does not appear in the current government guide.
 
-### Verify the channel relationship separately
+### Verify each serious candidate on separate dimensions
 
-For a serious candidate, determine whether it is:
+**Current usability**
+- can the relevant function be used now?
+
+**Target-process compatibility**
+- does the output/action actually work in the target business process?
+
+**Official relationship**
 - official self-operated;
 - official-platform integrated;
-- currently officially named/recommended;
-- compatible third-party;
-- only practically reported;
-- provider self-claim only;
-- unknown.
+- officially named/linked;
+- explicitly recommended/designated;
+- no official relationship established.
 
-Also determine current usability separately.
+Do not upgrade naming/linking into recommendation/designation.
+
+Do not translate practical compatibility into official status.
 
 Read [channel-verification.md](channel-verification.md) for the full model.
 
@@ -100,15 +106,15 @@ Route by the state verb:
 - 施工许可/竣工 -> housing/construction/planning authority;
 - 开工/投产 -> project owner/company + local authority + independent operational/physical trace where needed.
 
-Never let a `计划投产` article prove actual production.
+Never let `计划投产` prove actual production.
 
 ## 3. Judicial, enforcement, procurement
 
 Use the relevant official court/enforcement/procurement system for published records.
 
-Important negative-evidence rule:
-- not finding a published judgment or record does not prove no dispute/event ever existed;
-- publication, removal, correction, scope, and access limitations may matter.
+Negative-evidence rule:
+- not finding a published judgment/record does not prove no dispute/event ever existed;
+- publication scope, removal, correction, and access limitations may matter.
 
 ## 4. Statistics and structured public data
 
@@ -118,11 +124,11 @@ Use:
 - official open-data platforms;
 - responsible regulator datasets.
 
-Check indicator definition, geography, population, period, revision status, and whether the data are aggregate rather than microdata.
+Check definition, geography, population, period, revision status, and whether data are aggregate rather than microdata.
 
 ## 5. Local routes, maps, and places
 
-Closest operational sources:
+Operational sources:
 - 高德/百度地图 for POI, routes, traffic, walking, transit, branch metadata;
 - official metro/bus/airport/rail/operator notices for disruptions and first/last service.
 
@@ -144,31 +150,31 @@ Aggregators can discover combinations but cannot override live 12306 state.
 
 ### Flights
 
-Use operating airline/airport for authoritative disruption and check-in rules. Ctrip/Fliggy/Qunar-type platforms are useful for comparison and discovery; verify material booking state at purchase time.
+Use operating airline/airport for authoritative disruption and check-in rules. Ctrip/Fliggy/Qunar-type platforms are useful for comparison/discovery; verify material booking state at purchase time.
 
 ### Coaches/ferries/local intercity
 
 Prefer operator, station, transport authority, official account/mini program, or recognized ticketing system for proof/current state.
 
-Use aggregators and community sources to discover combinations or local transfer details.
+Use aggregators/community sources to discover combinations or local transfer details.
 
 ## 7. Healthcare service access
-
-For registration/logistics, use two lanes.
 
 Discovery:
 - hospital name + 微信/支付宝/挂号/小程序;
 - local/provincial health platforms;
+- third-party registration candidates;
 - maps for campus/entrance;
-- current user reports for queue/wayfinding.
+- recent user reports for queue/wayfinding.
 
 Verification:
-1. hospital official site/account/mini program;
-2. local/provincial health platform;
-3. officially integrated registration service;
-4. issuer/developer identity for unfamiliar third parties.
+- hospital official site/account/mini program;
+- local/provincial health platform;
+- current official naming/integration evidence;
+- issuer/developer identity for unfamiliar third parties;
+- actual booking/acceptance state where material.
 
-Verify campus, department, doctor/date, identity requirements, and issuer before payment.
+Do not call a third-party registration provider `hospital-operated` merely because it successfully books an appointment.
 
 ## 8. Local businesses and everyday services
 
@@ -179,11 +185,11 @@ Use a combination:
 3. merchant official channel/phone for reservations and branch-specific policy;
 4. 小红书/抖音/微博 for recent lived experience or visual clues.
 
-Recent social evidence may beat an old corporate web page for `is this branch actually operating today?`, but it does not establish licenses or legal status.
+Recent social evidence may beat an old corporate web page for `is this branch actually operating today?`, but it does not establish licenses/legal status.
 
 ## 9. WeChat ecosystem
 
-Use 微信搜一搜 when the answer may live in:
+Use 微信搜一搜 for:
 - official accounts;
 - public-account articles;
 - mini programs;
@@ -191,15 +197,16 @@ Use 微信搜一搜 when the answer may live in:
 - service entries;
 - third-party service providers.
 
-For discovery, search exact service/action + locality even when the provider name is unknown.
+For discovery, search service/action + locality even when the provider name is unknown.
 
-After discovering a candidate, verify:
+After discovering a candidate, verify separately:
 - exact mini-program/account identity;
 - operator/主体 when visible;
-- relationship to the competent authority;
-- current usability.
+- current usability;
+- compatibility with the target process;
+- official relationship, if any.
 
-Open-web bridges can help discovery but do not represent full WeChat coverage.
+Open-web bridges do not represent full WeChat coverage.
 
 ## 10. Alipay ecosystem
 
@@ -209,9 +216,9 @@ Search Alipay for:
 - transport/health/utility workflows;
 - merchant and third-party mini programs.
 
-Verify issuer before identity or payment actions.
+Verify issuer before identity/payment actions.
 
-Do not infer `official` merely because the service is accessible inside Alipay.
+Do not infer `official` merely because a service is accessible inside Alipay.
 
 ## 11. Social platforms and vertical communities
 
@@ -220,13 +227,13 @@ Use by strength:
 - **微博** — rapid public statements, event timelines, official short notices, eyewitness leads;
 - **微信** — local institutions, hospitals, schools, government-service notices and service entries;
 - **抖音/快手** — recent visual field evidence and local operations;
-- **小红书** — travel, consumer service, local process experience, practical pitfalls;
+- **小红书** — travel, consumer service, local-process experience, practical pitfalls;
 - **知乎/论坛** — terminology, workflows, niche technical/industry leads;
 - **Bilibili** — demonstrations and long-form walkthroughs.
 
 Use social platforms aggressively for **discovery, vocabulary, failure modes, and recent practical evidence**.
 
-Trace decisive claims such as `officially designated`, `statutory requirement`, or `legal status` to sources suited to those claims.
+Trace claims such as `officially designated`, `statutory requirement`, or `legal status` to sources suited to those claims.
 
 ## 12. SEO/self-media/service-provider pages
 
@@ -234,9 +241,9 @@ These are not automatically bad sources.
 
 Best uses:
 - discover current provider names;
-- discover terminology and platform entry names;
+- discover terminology/platform entry names;
 - find recent product/service changes;
-- identify what claims need verification.
+- identify claims that need verification.
 
 Weak uses:
 - proving their own `official recognition` claims;
@@ -276,7 +283,7 @@ For large visible changes consider:
 - official meteorological/geospatial platforms;
 - recent onsite imagery.
 
-Physical evidence can verify change or presence, but usually cannot by itself prove legal ownership, causal responsibility, or intent.
+Physical evidence can verify change/presence, but usually cannot by itself prove legal ownership, causal responsibility, or intent.
 
 ## 16. Consumer rights and complaints
 
@@ -285,4 +292,4 @@ Prefer the competent official system for rights/procedure:
 - consumer-market issue -> official 12315 / market-regulation channel;
 - sector-specific issue -> competent regulator or operator complaint channel.
 
-Use community sources to discover practical escalation routes and recurring failure modes, but not as the final authority for legal rights.
+Use community sources to discover practical escalation routes and recurring failure modes, but not as final authority for legal rights.
