@@ -1,7 +1,7 @@
 {
   "name": "china-real-world-search",
-  "version": "1.0.0",
-  "description": "Research and verify mainland-China real-world questions by tracing each claim to the system that actually generates it.",
+  "version": "1.1.0",
+  "description": "Research and solve mainland-China real-world questions by broadly discovering current channels, then verifying decisive claims against the systems that actually generate them.",
   "author": {
     "name": "hugeJan",
     "url": "https://github.com/hugeJan"
@@ -21,17 +21,17 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "China Real-World Search",
-    "shortDescription": "Find the real systems behind China-local facts",
-    "longDescription": "Research mainland-China real-world questions through the systems that actually generate and operate the relevant facts, combining official records, China-native service surfaces, platform-native search, current execution evidence, and independent verification.",
+    "shortDescription": "Find what works in China, then verify what it is",
+    "longDescription": "Research mainland-China real-world questions by broadly discovering current practical channels across China-native platforms, then separately verifying rules, channel identity, official relationship, compatibility, current usability, and decisive facts against the systems that actually generate them.",
     "developerName": "hugeJan",
     "category": "Productivity",
     "websiteURL": "https://github.com/hugeJan/china-real-world-search",
     "privacyPolicyURL": "https://github.com/hugeJan/china-real-world-search/blob/main/PRIVACY.md",
     "termsOfServiceURL": "https://github.com/hugeJan/china-real-world-search/blob/main/TERMS.md",
     "defaultPrompt": [
-      "查清这个中国本地问题，先找到真正生成该事实的系统。",
-      "核实这个中国大陆现实信息，区分规则、执行和当前状态。",
-      "帮我查可实际执行的中国本地方案，不要只看开放网页。"
+      "先广泛找到现在真正能用的中国本地渠道，再核实它到底是不是官方、是否兼容。",
+      "核实这个中国大陆现实信息，区分规则、执行、渠道身份和当前状态。",
+      "帮我找可实际执行的中国本地方案，不要因为官网没列就漏掉真实可用渠道。"
     ],
     "brandColor": "#D92D20",
     "composerIcon": "./assets/icon.svg",
