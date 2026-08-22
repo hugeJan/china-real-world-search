@@ -1,0 +1,20 @@
+{
+  "name": "hugejan",
+  "interface": {
+    "displayName": "hugeJan Plugins"
+  },
+  "plugins": [
+    {
+      "name": "china-real-world-search",
+      "source": {
+        "source": "local",
+        "path": "./plugins/china-real-world-search"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

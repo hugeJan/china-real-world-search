@@ -1,41 +1,76 @@
 # China Real-World Search
 
-A Codex and ChatGPT skill for researching and verifying mainland-China real-world questions through the systems that actually generate and operate the relevant facts.
+A real ChatGPT/Codex **Plugin** for researching mainland-China real-world questions through the systems that actually generate and operate the relevant facts.
 
-It combines authoritative records with China-native execution channels such as government apps, WeChat and Alipay mini programs, operator systems, maps, local platforms, transaction systems, and recent independent evidence.
+This repository is no longer packaged as a loose root-level Skill. It follows the OpenAI Plugin layout with a required `.codex-plugin/plugin.json`, a bundled Agent Skill, and a repo marketplace for local installation and testing.
 
-## What it helps with
+## What it does
 
-- Government services, eligibility, materials, fees, and local execution paths
-- Transport schedules, availability, disruptions, and route planning
-- Hospitals, appointments, local businesses, and current operating status
-- Companies, projects, policies, filings, and lifecycle-state verification
-- Historical pages, migrated records, conflicting claims, and fact-checking
+China Real-World Search helps the assistant avoid the common failure mode of treating open-Web search as the whole Chinese internet. It routes each important claim toward the system that naturally generates it, then verifies current execution when needed.
 
-## Install in Codex
+Typical use cases include:
 
-Clone the repository into your Codex skills directory:
+- government services, eligibility, materials, fees, and local execution paths;
+- transport schedules, availability, disruptions, and route planning;
+- hospitals, appointments, local businesses, and current operating status;
+- WeChat/Alipay mini programs, public accounts, local apps, and platform-native service entry points;
+- companies, projects, policies, filings, and lifecycle-state verification;
+- historical pages, migrated records, conflicting claims, and fact checking.
 
-```bash
-git clone https://github.com/hugeJan/china-real-world-search.git \
-  ~/.codex/skills/china-real-world-search
-```
-
-Start a new Codex task after installation and invoke the skill with:
+## Plugin structure
 
 ```text
-$china-real-world-search
+.
+├── .agents/plugins/marketplace.json
+├── plugins/
+│   └── china-real-world-search/
+│       ├── .codex-plugin/plugin.json
+│       ├── assets/
+│       └── skills/
+│           └── china-real-world-search/
+│               ├── SKILL.md
+│               └── references/
+├── scripts/validate_plugin.py
+├── PUBLISHING.md
+├── PRIVACY.md
+├── TERMS.md
+└── LICENSE
 ```
 
-## Install in ChatGPT Web
+## Install as a personal/repo Plugin
 
-Download the repository as a ZIP file, open **Plugins → Skills → Create → Upload from computer**, and upload the ZIP.
+The repository includes an OpenAI marketplace manifest. Add the Git-backed marketplace from Codex:
 
-## Structure
+```bash
+codex plugin marketplace add hugeJan/china-real-world-search --ref main
+```
 
-- [`SKILL.md`](SKILL.md) — main workflow and quality gate
-- [`references/source-routing.md`](references/source-routing.md) — fact-generating system routing
-- [`references/query-playbook.md`](references/query-playbook.md) — China-native query strategy
-- [`references/verification-protocol.md`](references/verification-protocol.md) — investigation and conflict-resolution method
-- [`references/examples.md`](references/examples.md) — execution examples
+Then use the ChatGPT desktop app:
 
+1. Open ChatGPT and switch to **Work**, or open **Codex**.
+2. Open **Plugins**.
+3. Select the **hugeJan Plugins** marketplace/source.
+4. Open **China Real-World Search** and install it.
+5. Start a fresh conversation and invoke `@China Real-World Search` when you want to force the workflow.
+
+Local/repo marketplaces are an authoring and testing path. Public distribution uses the universal Plugin Directory after OpenAI review.
+
+## Validate the package
+
+```bash
+python3 scripts/validate_plugin.py
+```
+
+The same validator runs in GitHub Actions on pushes and pull requests.
+
+## Publish to the universal ChatGPT/Codex Plugin Directory
+
+This is a **skills-only Plugin**; it does not need an MCP server merely to qualify as a Plugin. Public submission is done through the OpenAI Platform plugin submission portal.
+
+See [`PUBLISHING.md`](PUBLISHING.md) for the exact submission checklist, listing copy, and the required five positive plus three negative review tests.
+
+## Design principle
+
+> Find the system that naturally generates the fact → retrieve the closest available original record → verify what it proves → add an independent execution/reality check when needed.
+
+Open Web is a discovery layer, not a complete model of the mainland-China information environment.

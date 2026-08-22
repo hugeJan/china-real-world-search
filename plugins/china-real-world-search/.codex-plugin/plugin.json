@@ -1,0 +1,41 @@
+{
+  "name": "china-real-world-search",
+  "version": "1.0.0",
+  "description": "Research and verify mainland-China real-world questions by tracing each claim to the system that actually generates it.",
+  "author": {
+    "name": "hugeJan",
+    "url": "https://github.com/hugeJan"
+  },
+  "homepage": "https://github.com/hugeJan/china-real-world-search",
+  "repository": "https://github.com/hugeJan/china-real-world-search",
+  "license": "MIT",
+  "keywords": [
+    "china",
+    "mainland-china",
+    "research",
+    "local-search",
+    "fact-checking",
+    "government-services",
+    "travel"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "China Real-World Search",
+    "shortDescription": "Find the real systems behind China-local facts",
+    "longDescription": "Research mainland-China real-world questions through the systems that actually generate and operate the relevant facts, combining official records, China-native service surfaces, platform-native search, current execution evidence, and independent verification.",
+    "developerName": "hugeJan",
+    "category": "Productivity",
+    "websiteURL": "https://github.com/hugeJan/china-real-world-search",
+    "privacyPolicyURL": "https://github.com/hugeJan/china-real-world-search/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/hugeJan/china-real-world-search/blob/main/TERMS.md",
+    "defaultPrompt": [
+      "查清这个中国本地问题，先找到真正生成该事实的系统。",
+      "核实这个中国大陆现实信息，区分规则、执行和当前状态。",
+      "帮我查可实际执行的中国本地方案，不要只看开放网页。"
+    ],
+    "brandColor": "#D92D20",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg",
+    "screenshots": []
+  }
+}

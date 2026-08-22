@@ -1,0 +1,13 @@
+name: Validate Plugin
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate ChatGPT/Codex plugin package
+        run: python3 scripts/validate_plugin.py
