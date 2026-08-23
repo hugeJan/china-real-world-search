@@ -1,7 +1,7 @@
 {
   "name": "china-real-world-search",
-  "version": "1.1.1",
-  "description": "Research and solve mainland-China real-world questions by discovering concrete current channels before verifying decisive claims against the systems that actually generate them.",
+  "version": "1.1.2",
+  "description": "Research mainland-China real-world questions with capability-aware discovery, strict evidence boundaries, and separate verification of usability, compatibility, and official relationship.",
   "author": {
     "name": "hugeJan",
     "url": "https://github.com/hugeJan"
@@ -22,7 +22,7 @@
   "interface": {
     "displayName": "China Real-World Search",
     "shortDescription": "Find concrete China-local options, then verify them",
-    "longDescription": "Research mainland-China real-world questions by discovering concrete current channels across China-native platforms, then separately verifying rules, exact terminology, provider identity, official relationship, target-process compatibility, current usability, and decisive facts.",
+    "longDescription": "Research mainland-China real-world questions by discovering concrete current channels through source surfaces the host can actually access, then separately verifying rules, exact terminology, provider identity, official relationship, target-process compatibility, current usability, and decisive facts.",
     "developerName": "hugeJan",
     "category": "Productivity",
     "websiteURL": "https://github.com/hugeJan/china-real-world-search",
@@ -31,7 +31,7 @@
     "defaultPrompt": [
       "先找出现在具体能用的平台/渠道名称，再分别核实它是否官方、是否兼容。",
       "核实这个中国大陆现实信息，保留官方原始术语，并区分规则、执行、渠道身份和当前状态。",
-      "帮我找真正可执行的中国本地方案，不要用泛泛的“第三方小程序/线下办理”代替具体候选。"
+      "帮我找真正可执行的中国本地方案；不能直接检查某个平台时，请明确说明而不要猜测平台内状态。"
     ],
     "brandColor": "#D92D20",
     "composerIcon": "./assets/icon.svg",
