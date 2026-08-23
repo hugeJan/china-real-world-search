@@ -15,7 +15,11 @@ SKILLS_DIR = PLUGIN / "skills"
 PUBLISHING = ROOT / "PUBLISHING.md"
 CHANGELOG = ROOT / "CHANGELOG.md"
 PRIVACY = ROOT / "PRIVACY.md"
+GITIGNORE = ROOT / ".gitignore"
 EVALS = ROOT / "evals" / "skill-regressions.json"
+RUBRICS = ROOT / "evals" / "rubrics.json"
+EVAL_README = ROOT / "evals" / "README.md"
+EVAL_BUILDER = ROOT / "scripts" / "build_eval_packets.py"
 
 SEMVER_RE = re.compile(
     r"^(0|[1-9]\d*)\."
@@ -25,6 +29,19 @@ SEMVER_RE = re.compile(
     r"(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*))?"
     r"(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$"
 )
+
+MARKDOWN_SKIP_DIRS = {
+    ".git",
+    ".venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".mypy_cache",
+    "node_modules",
+    "dist",
+    "build",
+}
+VALID_RUBRIC_SCOPES = {"response", "trace", "response_or_trace"}
 
 errors: list[str] = []
 
@@ -112,13 +129,22 @@ def parse_simple_frontmatter(text: str, path: Path) -> dict[str, str] | None:
 
 def validate_markdown_links(root: Path) -> None:
     link_re = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+    uri_scheme_re = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*:")
+
     for md in root.rglob("*.md"):
+        try:
+            parts = md.relative_to(root).parts
+        except ValueError:
+            parts = ()
+        if any(part in MARKDOWN_SKIP_DIRS for part in parts[:-1]):
+            continue
+
         text = read_text(md)
         if text is None:
             continue
         for target in link_re.findall(text):
             target = target.strip()
-            if not target or target.startswith(("http://", "https://", "mailto:", "#")):
+            if not target or target.startswith(("#", "//")) or uri_scheme_re.match(target):
                 continue
             path_part = target.split("#", 1)[0]
             if not path_part:
@@ -248,7 +274,8 @@ if SKILLS_DIR.exists():
 else:
     fail("missing skills directory")
 
-validate_markdown_links(PLUGIN / "skills")
+# Check relative links across all repository Markdown, not only the Skill bundle.
+validate_markdown_links(ROOT)
 
 if marketplace is not None:
     if not isinstance(marketplace, dict):
@@ -290,9 +317,12 @@ if marketplace is not None:
                 if not entry.get("category"):
                     fail("marketplace entry missing category")
 
-# Structured regression fixtures are schema-validated here; behavior execution belongs
+# Structured regression fixtures are schema-validated here. Behavior execution belongs
 # to a host/agent eval harness or the manual release gate documented in PUBLISHING.md.
 evals = load_json(EVALS)
+rubrics = load_json(RUBRICS)
+referenced_invariants: set[str] = set()
+
 if evals is not None:
     if not isinstance(evals, list) or not evals:
         fail("evals/skill-regressions.json must be a non-empty JSON array")
@@ -328,15 +358,58 @@ if evals is not None:
             for field_name, values in (("must", must), ("must_not", must_not)):
                 if not isinstance(values, list) or not values or any(not isinstance(v, str) or not v for v in values):
                     fail(f"{prefix} {field_name} must be a non-empty list of strings")
+                else:
+                    referenced_invariants.update(values)
 
         required_categories = {"routing", "capability", "security", "action", "discovery", "verification"}
         missing = sorted(required_categories - categories)
         if missing:
             fail(f"eval fixtures missing required categories: {', '.join(missing)}")
 
-for release_file in ("LICENSE", "PRIVACY.md", "TERMS.md", "PUBLISHING.md", "CHANGELOG.md", "README.md"):
+if rubrics is not None:
+    if not isinstance(rubrics, dict) or not rubrics:
+        fail("evals/rubrics.json must be a non-empty JSON object")
+    else:
+        for rubric_id, rubric in rubrics.items():
+            if not isinstance(rubric_id, str) or not rubric_id:
+                fail("rubric IDs must be non-empty strings")
+                continue
+            if not isinstance(rubric, dict):
+                fail(f"rubric {rubric_id} must be an object")
+                continue
+            for field in ("description", "judge", "scope"):
+                value = rubric.get(field)
+                if not isinstance(value, str) or not value.strip():
+                    fail(f"rubric {rubric_id} missing/invalid {field}")
+            scope = rubric.get("scope")
+            if scope not in VALID_RUBRIC_SCOPES:
+                fail(f"rubric {rubric_id} has invalid scope: {scope!r}")
+
+        missing_rubrics = sorted(referenced_invariants - set(rubrics))
+        if missing_rubrics:
+            fail("eval fixtures reference undefined rubrics: " + ", ".join(missing_rubrics))
+
+# Keep generated/local development artifacts out of the repository by default.
+gitignore_text = read_text(GITIGNORE)
+if gitignore_text is not None:
+    ignored = {line.strip() for line in gitignore_text.splitlines() if line.strip() and not line.lstrip().startswith("#")}
+    for required_pattern in {".DS_Store", "__pycache__/", "*.py[cod]", "*.zip"}:
+        if required_pattern not in ignored:
+            fail(f".gitignore missing expected development artifact pattern: {required_pattern}")
+
+for release_file in (
+    "LICENSE",
+    "PRIVACY.md",
+    "TERMS.md",
+    "PUBLISHING.md",
+    "CHANGELOG.md",
+    "README.md",
+    "evals/README.md",
+    "evals/rubrics.json",
+    "scripts/build_eval_packets.py",
+):
     if not (ROOT / release_file).is_file():
-        fail(f"missing release file: {release_file}")
+        fail(f"missing release/support file: {release_file}")
 
 if errors:
     print("Plugin validation failed:")
@@ -348,6 +421,8 @@ print("Plugin validation passed")
 print(f" - manifest: {rel(MANIFEST)}")
 print(f" - marketplace: {rel(MARKETPLACE)}")
 print(f" - bundled skill: {rel(SKILLS_DIR / 'china-real-world-search' / 'SKILL.md')}")
+print(f" - markdown links: repository-wide")
 print(f" - regression fixtures: {rel(EVALS)}")
+print(f" - eval rubrics: {rel(RUBRICS)}")
 if version:
     print(f" - release version: {version}")

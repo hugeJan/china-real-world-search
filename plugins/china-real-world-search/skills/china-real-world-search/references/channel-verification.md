@@ -18,10 +18,10 @@ These can be excellent for finding candidate channels:
 - ordinary web search;
 - SEO-heavy articles;
 - service-provider pages;
-- WeChat/Alipay native search;
+- WeChat/Alipay native search when the host can inspect those surfaces;
 - app-store search;
-- maps/local-life platforms;
-- Xiaohongshu/Douyin/Weibo/forums;
+- maps/local-life platforms when accessible;
+- Xiaohongshu/Douyin/Weibo/forums when accessible;
 - recent user reports.
 
 They may have weak evidentiary value for claims such as `官方指定` or `政府认可`.
@@ -34,7 +34,7 @@ Use these to establish official status, rules, or system relationships:
 - current institution pages/accounts;
 - official service directories;
 - formal technical/service documentation when publicly available;
-- direct platform issuer/developer identity surfaces.
+- direct platform issuer/developer identity surfaces when accessible.
 
 The correct pattern is:
 
@@ -128,7 +128,7 @@ Evidence indicates that a third-party channel's output/action is accepted by the
 Compatibility evidence can include:
 - current successful acceptance by the target business process verified firsthand;
 - multiple independent recent reports of successful acceptance in the same relevant process/jurisdiction;
-- a transaction/business-system acceptance result;
+- a transaction/business-system acceptance result that already exists or was created for the user's actual task, not a transaction created merely for testing;
 - credible technical/service documentation tied to the target process.
 
 Do not translate `compatible` into `officially designated`, `government-certified`, or `official channel` without separate evidence.
@@ -154,8 +154,8 @@ Track usability independently from official relationship and compatibility.
 Strong current evidence supports the **specific function observed** in the user's context.
 
 Examples:
-- live platform function inspected;
-- current transaction/booking completed;
+- live platform function inspected through a capability the host actually has;
+- a current transaction/booking completed for the user's real requested task;
 - user reports direct successful use today/recently and the observation is internally consistent.
 
 When based on user firsthand evidence, qualify the scope: `confirmed for the user's current context`.
@@ -202,10 +202,10 @@ When an old official source documents a channel/service:
 
 1. record the exact date;
 2. record exactly what function/relationship the source proves;
-3. test the current entry directly if possible;
+3. test the current entry directly only if the host can access it;
 4. search `调整` `迁移` `下线` `暂停` `恢复` `升级` `整合` `入口` `新版` `服务迁移`;
 5. search current official documentation for a replacement;
-6. search current platform-native discovery for the same service;
+6. use current platform-native discovery only when the host can inspect that platform;
 7. report historical official status and current usability separately.
 
 Correct language:
@@ -257,7 +257,7 @@ Read the exact sentence that carries the relationship claim.
 
 When the user cares about `will this work?`, prefer evidence that observes acceptance as directly as possible:
 
-1. current successful acceptance/transaction in the target business system;
+1. current successful acceptance/transaction in the target business system that already exists or is part of the user's actual requested action;
 2. competent current official documentation explicitly accepting the output/channel;
 3. current official-platform integration exposing the relevant end-to-end function;
 4. user's firsthand successful acceptance in the same relevant context;
@@ -267,16 +267,25 @@ When the user cares about `will this work?`, prefer evidence that observes accep
 
 This ladder evaluates **compatibility**, not official recommendation/designation.
 
-## 11. Security and issuer identity
+Never create a booking, payment, application, account, or other consequential transaction merely to move evidence higher on this ladder.
+
+## 11. Security, issuer identity, and impersonation checks
 
 Before sending the user into an unfamiliar mini program/app/payment flow:
 
-- confirm the exact platform name;
-- inspect publisher/developer/主体 information when available;
-- prefer entry through native search or a verified institution page over random QR codes;
+- confirm the exact platform/service name;
+- inspect publisher/developer/`主体信息` when the host can access it;
+- compare the displayed legal subject name with the claimed brand/service and with any competent institution relationship evidence;
+- treat subject type (`企业`, `机关`, `事业单位`, etc.) as an identity clue, **not** as standalone proof that the specific channel is official, authorized, safe, or compatible;
+- if a technical vendor operates an official-platform integration, distinguish the vendor's legal identity from the public institution's official relationship to that specific service;
+- prefer native search or a verified institution entry over copied QR codes, forwarded deep links, unofficial download mirrors, or unknown payment pages;
 - do not recommend unofficial APK mirrors;
 - do not ask for unnecessary ID numbers, passwords, payment credentials, or screenshots containing sensitive data;
-- if two services share similar names, resolve the exact entity before recommending one.
+- if two services share similar names, resolve the exact entity before recommending one;
+- treat claims such as `官方指定`, `内部渠道`, `包过`, `100%通过` and unusually high or opaque service/agency fees as risk signals that require independent verification rather than as proof;
+- before identity or payment steps, verify the expected fee/payee/recipient against competent or clearly attributable current information when available.
+
+A matching name or an apparently official-looking icon is not enough. The goal is to prevent both provenance overclaiming and practical impersonation/fraud risk without assuming that every third-party operator is unsafe.
 
 ## 12. Recommendation rule
 
@@ -306,3 +315,5 @@ A concise answer can look like:
 - Treating lack of official naming as proof that a third-party service cannot work.
 - Treating successful artifact generation as proof that the target authority accepted it.
 - Treating a user's successful acceptance as proof of universal, permanent, or officially designated compatibility.
+- Treating subject type or branding alone as proof of officiality or safety.
+- Creating a consequential transaction merely to verify a service.

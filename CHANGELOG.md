@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.1.3 — Eval and repository hardening
+
+### Changed
+
+- Expanded `.gitignore` for Python bytecode/cache files, generated ZIP bundles, local virtual environments, IDE metadata, and build outputs.
+- Extended Markdown relative-link validation from the Skill bundle to repository-wide Markdown while skipping local/generated directories.
+- Added `evals/rubrics.json` so every regression `must` / `must_not` invariant has an observable description, judge rule, and response/trace scope.
+- Added `evals/README.md` with provider-neutral evaluation semantics and release guidance.
+- Added `scripts/build_eval_packets.py`, a zero-dependency packet builder that turns fixtures/rubrics plus optional captured responses/traces into JSONL judge packets without calling any model API.
+- Added security regressions for subject-identity overreach and unverified provider marketing/high or opaque agency fees.
+- Aligned execution examples with the adaptive stop rule and capability gate; removed the remaining `normally 2-3` candidate quota wording.
+- Strengthened channel identity guidance: platform subject type is an identity clue, not standalone proof of officiality, authorization, safety, or fraud.
+- Added practical impersonation/fraud checks around legal subject names, official relationship, copied QR/deep links, payee/fee identity, and strong provider self-claims.
+- CI now validates both the Plugin package and the provider-neutral eval packet definitions.
+
+### Why
+
+Version 1.1.2 established the main safety and capability boundaries. Version 1.1.3 closes repository-level gaps: generated artifacts are ignored, documentation links are checked consistently, eval invariants become machine-resolvable rather than opaque labels, and reference examples now fully match the adaptive/capability-aware behavior of the main Skill.
+
 ## 1.1.2 — Capability and safety boundaries
 
 ### Changed
