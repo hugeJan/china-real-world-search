@@ -8,6 +8,8 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate ChatGPT/Codex plugin package
         run: python3 scripts/validate_plugin.py
+      - name: Validate and build eval packets
+        run: python3 scripts/build_eval_packets.py --check
