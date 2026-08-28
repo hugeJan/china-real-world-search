@@ -1,6 +1,6 @@
 ---
 name: china-real-world-search
-description: Research mainland-China government services, public-service procedures, transportation, and other locally implemented civic or administrative matters where the answer depends on current rules, local execution, service channels, or real-world availability. Use for 政务办事流程、证件办理、户籍社保、公积金、医保、出入境、交通出行、铁路/航班/公交、本地政务服务入口、医院挂号、政策执行、窗口办理、微信/支付宝政务服务、小程序办理渠道、费用、材料要求、办理地点、营业/运营状态等中国大陆现实公共服务问题. Do not use for general questions about Chinese companies, brands, products, phones, computers, software, apps, technology, programming, device troubleshooting, 刷机、Root、Bootloader、ROM、API/SDK、产品规格或普通技术问题.
+description: Research mainland-China government services, public services, transportation, and other locally implemented civic or administrative matters where the answer materially depends on current rules, local execution, service channels, or real-world availability. Use when the task concerns how a public or administrative service is actually provided, accessed, or implemented in mainland China. Do not use merely because the subject is related to China. Do not use for ordinary product, technology, software, commercial, educational, cultural, or general-knowledge questions unless mainland-China public-service rules or local administrative execution are themselves material to the answer.
 compatibility: Requires web/search access for current-fact research. Platform-native app state may only be described as directly inspected when the host actually provides access to that platform or an appropriate connected tool.
 ---
 
