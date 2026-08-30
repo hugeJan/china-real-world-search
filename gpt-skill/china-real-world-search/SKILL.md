@@ -4,189 +4,125 @@ description: Use for mainland-China government, public-institution, state/public
 license: MIT
 metadata:
   author: hugeJan
-  version: "1.3.0-gpt-slim"
+  version: "1.3.1-gpt-slim"
 ---
 
 # China Real-World Search
 
 ## Goal
 
-Find the **current, locally executable path** for mainland-China public services. Do not treat an official webpage as the whole answer when the user actually needs to know what works now.
+Find the **current, locally executable path** for mainland-China public services. An official webpage may establish a rule without proving what channel actually works now.
 
 ## 1. Scope gate
 
-Use this Skill only when all three conditions pass.
+Activate only when all three pass:
 
-### A. The provider or service is in scope
+1. **Provider/service** — government body or service center; public institution; state-owned/state-controlled operator acting as a public-service provider; or public transport whose operation is material to the task.
+2. **Task** — eligibility, materials, procedure, appointment, fee/tariff, processing time, channel, outlet, opening hours, status, suspension/migration, timetable, ticketing rule, complaint route, or public-transport routing.
+3. **Current/local need** — the answer depends on current rules/state, province/city/district implementation, a concrete channel/outlet/station, timetable, disruption, or other real execution detail.
 
-At least one must be central to the user's goal:
+A third-party app/mini program may be researched only as a channel for an already in-scope task.
 
-- government body, regulator, public-security organ, court, or government service center;
-- public institution such as a public hospital, public school, examination body, or public cultural institution;
-- state-owned or state-controlled operator acting as a public-service provider, such as utilities, telecommunications, postal service, or routine state-bank services;
-- public-transport system or operator when the task depends on railway, flight, metro, bus, ferry, coach, station, airport, port, timetable, ticketing, or transfer operations;
-- a third-party channel only when it is being evaluated as a way to complete an already in-scope public-service task.
+Do **not** activate merely because the prompt mentions China, 官方, 国企, 央企, 国产, 办理, or an SOE/government name.
 
-### B. The task is in scope
+Do **not** use for:
 
-Typical tasks:
-
-- eligibility, materials, application, appointment, renewal, replacement, transfer, cancellation, status, or complaint route;
-- statutory fee, public tariff, processing time, service point, service area, opening hours, or current channel;
-- suspension, migration, restoration, timetable, ticketing rule, service availability, or other operational change;
-- practical public-transport routing and transfer planning.
-
-### C. Current or local execution matters
-
-The answer must materially depend on current rules, province/city/district implementation, a real channel/outlet/station, a timetable or operational state, or the difference between written rules and what can actually be done now.
-
-### Never activate merely because the prompt mentions China, 官方, 国企, 央企, 国产, 办理, or a government/SOE name.
-
-Do **not** use this Skill for:
-
-- flashing, Root, Bootloader unlocking, ROMs, firmware, hardware repair, or ordinary software troubleshooting;
-- phones, appliances, vehicles, product comparison, shopping, warranty, or consumer-brand evaluation;
-- private restaurants, hotels, entertainment, local-life recommendations, or ordinary private commercial services;
-- company profile, management, project progress, business news, financial statements, stocks, funds, insurance, wealth products, or investment advice;
+- flashing, Root, Bootloader, ROMs, firmware, device repair, or ordinary software troubleshooting;
+- product comparison, shopping, phones, appliances, vehicles, warranty, or brand evaluation;
+- restaurants, hotels, entertainment, private local-life recommendations, or ordinary private commercial services;
+- company/profile/project/news research, financial statements, stocks, funds, insurance, wealth products, or investment advice;
 - stable general knowledge that does not require current/local execution research.
 
-For mixed requests, use this Skill only for the separable public-service part.
+For mixed requests, apply only to the separable public-service part.
 
 ## 2. Research workflow
 
-### Step 1 — Define the exact claim
+### Step 1 — Resolve the exact task
 
-Resolve the service, requested action, jurisdiction, date/time if relevant, and the decision the user needs to make.
+Identify the service, requested action, jurisdiction, relevant date/time, and the decision the user needs. Preserve the exact current official service/document name when possible.
 
-Prefer the exact official service/document name over colloquial shorthand.
+### Step 2 — Establish rule truth
 
-### Step 2 — Establish the rule
+Use the competent authority, current local service guide, public institution, or responsible operator for eligibility, materials, official terminology, statutory fee/public tariff, formal processing time, and responsibility.
 
-Use the competent authority, current local service guide, public institution, or responsible operator for:
+Do not assume a national rule proves local execution details.
 
-- eligibility and materials;
-- official terminology;
-- statutory fee or public tariff;
-- legal/administrative processing time;
-- responsible authority or operator.
+### Step 3 — Find the executable channel
 
-A national rule does not automatically prove local execution details.
-
-### Step 3 — Discover the path that can actually be used
-
-For `how/where can I do this now?`, proactively search China-native execution channels, not only ordinary websites:
+For `how/where can I do this now?`, proactively search China-native channels instead of stopping at ordinary webpages:
 
 - provincial/city/district government-service platforms;
 - official apps;
-- WeChat or Alipay mini programs and public accounts;
-- operator apps and service portals;
-- official hotlines and service directories;
+- WeChat/Alipay mini programs and public accounts;
+- operator apps/portals and official hotlines;
 - self-service terminals;
 - service halls, branches, counters, stations, airports, ports, and ticketing systems.
 
-Name the concrete channel or service point when reasonably discoverable. Avoid vague advice such as `微信里有入口` or `去营业厅问`.
+Name the concrete channel or service point when discoverable. Avoid vague advice like `微信里有入口` or `去营业厅问`.
 
-### Step 4 — Check real-world execution
+### Step 4 — Check real execution
 
-When it can change the recommendation, use:
+When it can change the recommendation, use current operational notices, map/POI data, and recent user experience.
 
-- current operator/service-hall notices;
-- current map/POI data for outlets, entrances, stations, walking burden, and route topology;
-- recent independent user experience for queues, transfer friction, failed entries, or channel problems;
-- live transaction, inventory, timetable, or slot state only when the host can actually inspect it.
+- maps/POI → location, entrance, route topology, walking burden;
+- recent user reports → queueing, transfer friction, failed entries, or practical channel problems;
+- live transaction/inventory/slot state → only when the host can actually inspect it.
 
-Use community evidence for practical reality, not as authority for statutory rules.
+Community evidence can describe practical reality, but should not define statutory rules.
 
-### Step 5 — Verify serious channels separately
+### Step 5 — Verify serious channels without conflating claims
 
-For each serious app, mini program, branch, third party, or route, keep these propositions separate:
+For each serious app, mini program, branch, third party, or route, separately verify:
 
-1. **Identity** — who operates or publishes it?
-2. **Current usability** — does the relevant function appear usable now?
-3. **Compatibility** — does it complete the target process?
-4. **Official relationship** — self-operated, integrated, officially named/linked/recommended, or not established?
-5. **Locality** — does the evidence apply to the user's city/district/service scenario?
-6. **Time** — current, recent, historical only, unavailable, or unknown?
+- **identity** — who operates/publishes it;
+- **usability** — whether the relevant function appears usable now;
+- **compatibility** — whether it completes the target process;
+- **official relationship** — self-operated, integrated, officially named/linked/recommended, or not established;
+- **locality/time** — whether the evidence matches the user's place and current period.
 
-Never infer `works now` → `official`, `official in the past` → `available today`, or `provider says it works` → `target office accepts it`.
+Never infer `works now` → `official`, `official before` → `works today`, or `provider claims compatibility` → `target office accepts it`.
 
-### Step 6 — Check freshness and locality
+### Step 6 — Check freshness and capability
 
-Prefer the smallest jurisdiction that controls the service:
+Prefer:
 
 **national/provincial rule → city/district implementation → exact channel/outlet/operator → recent operational evidence**
 
-For changing services, distinguish event time, publication time, effective time, update time, and repost time.
+For old or changing services, search terms such as `调整` `暂停` `恢复` `搬迁` `下线` `迁移` `升级` `整合` `入口` `新版` `试运行` `正式运营` `停运` `临时`.
 
-When an old entry may have changed, search terms such as:
+Treat old official evidence as historical unless current status is independently established.
 
-`调整` `暂停` `恢复` `搬迁` `下线` `迁移` `升级` `整合` `入口` `新版` `试运行` `正式运营` `停运` `临时`
+Do not claim direct inspection of WeChat, Alipay, 12306, map apps, operator apps, hospital systems, booking slots, inventory, or in-app menus unless the host actually has that access. Do not create test bookings, payments, applications, ticket purchases, accounts, or identity uploads merely to verify usability.
 
-An old official page proves historical status only unless current status is independently established.
-
-### Step 7 — Be honest about platform access
-
-Do not claim direct inspection of WeChat, Alipay, 12306, map apps, operator apps, hospital systems, booking slots, inventory, or in-app menus unless the host actually provides access.
-
-If live state cannot be inspected, use accessible current evidence and state the limitation precisely.
-
-Do not create test bookings, applications, payments, ticket purchases, accounts, or identity uploads merely to prove that a channel works.
-
-## 3. Public-transport rule
+## 3. Public transport
 
 For public-transport planning:
 
-- resolve the exact origin, destination, date, and arrival constraint;
-- verify railway/flight/metro/bus/ferry/coach schedules and disruptions with the operator or authoritative transaction surface when available;
-- use maps for transfer geometry, walking, station entrances, and last-mile burden;
-- compare practical door-to-door burden, transfers, fare, walking, reliability, and availability risk rather than theoretical speed alone;
-- do not claim live ticket inventory unless it was directly checked.
+- resolve exact origin, destination, date, and arrival constraint;
+- verify schedules/disruptions with operators, authorities, stations/airports/ports, or authoritative transaction systems when available;
+- use maps for transfer geometry, walking, entrances, and last-mile burden;
+- compare door-to-door time, cost, transfers, walking, reliability, and availability risk rather than theoretical speed alone;
+- never claim live ticket inventory unless it was directly checked.
 
-Ordinary driving or walking directions without a public-transport/public-service dependency are out of scope.
+Ordinary driving/walking directions without a public-transport or public-service dependency are out of scope.
 
-## 4. Source rule
-
-Choose sources by the fact they generate:
-
-- rules/materials/fees → competent authority or current official service guide;
-- local execution → local service platform, responsible office, institution, or operator;
-- transport operation → operator, transport authority, airport/station/port, or authoritative transaction system;
-- branch/station/route reality → current map/POI plus recent operational evidence;
-- third-party compatibility → target-process acceptance evidence, not provider marketing alone.
-
-A weak source may discover a candidate name. It should not define the official rule.
-
-## 5. Output contract
+## 4. Output
 
 Lead with the decision, not a source dump.
 
-For a public-service task, normally give:
+For a service task, normally provide: **best current path → exact steps → materials/fee/time → concrete channel/outlet → why it is preferable → one useful fallback → material verification limitation**.
 
-1. the best current path;
-2. exact steps;
-3. materials, eligibility, fee/tariff, and time when relevant;
-4. concrete channel/outlet and current status;
-5. why this path is preferable;
-6. one fallback when useful;
-7. the date and any material limitation for facts not directly verified.
+For public transport, normally provide: **primary route → transfer sequence → supported time/cost → critical risk → one practical fallback**.
 
-For public transport, normally give:
+## Routing examples
 
-1. primary route;
-2. transfer sequence and stations;
-3. time/cost range when supported;
-4. critical first/last-service, station-change, walking, or availability risk;
-5. one practical fallback when useful.
-
-## 6. Routing examples
-
-Use this Skill:
+Use:
 
 - `非本地户籍在东莞第一次办港澳通行证，需要什么材料，哪里能办？`
 - `中国移动异地补卡需要什么材料，大岭山哪个营业厅能办？`
 - `周一从凯里南站去东莞大岭山，给我公共交通路线。`
 
-Do not use this Skill:
+Do not use:
 
 - `中国移动定制版手机能不能刷机、解锁 Bootloader？`
 - `这台国产手机怎么 Root？`
@@ -194,13 +130,4 @@ Do not use this Skill:
 
 ## Final check
 
-Before answering, confirm:
-
-- provider/service, task, and current/local gates all passed;
-- the task is not merely consumer tech, shopping, private commerce, company research, or investment;
-- rule truth and current execution were checked separately;
-- China-native channels were considered when they could reduce user friction;
-- third-party usability, compatibility, and official relationship were not conflated;
-- locality and dates match the user's actual case;
-- direct platform inspection was claimed only when it actually occurred;
-- the answer leaves the user with an actionable next step.
+Before answering, confirm that the scope gate passed, rule truth and execution truth were separated, China-native channels were considered where useful, locality/freshness match the user's case, and no unsupported claim of direct platform inspection was made.
