@@ -1,74 +1,85 @@
-# China Real-World Search
+# China Government & State Public Service Search
 
-A ChatGPT/Codex **skills-only Plugin** for researching mainland-China real-world questions through the systems that actually generate and operate the relevant facts — while still discovering the channels people can actually use today.
+A ChatGPT/Codex **skills-only Plugin** for verifying how mainland-China government, public-institution, and state-owned public-service work is actually carried out today.
 
-This repository follows the Plugin layout with `.codex-plugin/plugin.json`, a bundled Agent Skill, and a repo marketplace for personal/local installation and testing.
+The repository and package identifier remain `china-real-world-search` for installation compatibility. The user-facing scope is deliberately narrower.
 
-## What it does
+## Scope
 
-China Real-World Search is designed around a common failure mode in China-local research: **the most authoritative source is often not the best place to discover the current executable channel**.
+The Plugin activates only when all three conditions are true:
 
-The plugin therefore uses two complementary workflows.
+> **in-scope provider × in-scope service task × current/local execution need**
 
-### Practical/actionable questions
+### In-scope providers
 
-> **Discover current options broadly → verify serious candidates narrowly → classify what each option is → confirm current usability/compatibility → recommend the best path.**
+- government bodies and government service institutions;
+- public institutions providing public services;
+- state-owned or state-controlled public-service operators, only for their public-facing service operations;
+- third-party channels only when they are being evaluated as a way to complete an already in-scope service.
 
-### Investigation/fact-verification questions
+### In-scope tasks
 
-> **Find the system that naturally generates the fact → retrieve the closest original record → verify what it proves → add independent evidence when needed.**
+- eligibility, materials, procedure, appointment, replacement, transfer, cancellation, status, or complaint route;
+- fees, tariffs, processing time, channels, outlets, hours, schedules, service areas, or current operational changes;
+- public-transport planning whose decisive facts are railway, flights, metro, bus, ferry, public coach, airports, stations, ports, or operator operations.
 
-Typical use cases include:
+### Explicitly out of scope
 
-- government services, eligibility, materials, fees, and local execution paths;
-- WeChat/Alipay mini programs, public accounts, local apps, and third-party service channels;
-- distinguishing `official`, `official-platform integrated`, `officially named`, and `compatible third-party`;
-- transport schedules, availability, disruptions, and route planning;
-- hospitals, appointments, local businesses, and current operating status;
-- companies, projects, policies, filings, and lifecycle-state verification;
-- historical pages, migrated/removed service entries, conflicting claims, and fact checking.
+- phone flashing, Root, Bootloader unlocking, firmware, ROMs, hardware repair, and ordinary software troubleshooting;
+- product comparison, shopping, consumer electronics, vehicles, appliances, and brand evaluation;
+- company news, corporate/project research, financial statements, stocks, funds, insurance, wealth products, and investment advice;
+- private local-life recommendations and unrelated commercial services.
 
-## Skills-only by design
+A government or SOE name is not a trigger by itself.
 
-This project does **not** require an MCP server or developer-operated backend.
+`中国移动异地补卡需要什么材料？` is in scope.  
+`中国移动定制版手机能不能刷机？` is not.
 
-The Skill provides research instructions and reference material. It uses whatever search/browser/apps/tools the host environment already makes available.
+## Why it exists
 
-That distinction matters:
+In mainland-China public services, the source that defines the rule is often not the source that reveals the channel that works today.
 
-- a source category such as WeChat, Alipay, 12306, maps, local-life platforms, or an app may be the ideal place to verify a fact;
-- the Skill must only claim direct inspection when the current host actually exposes access to that surface;
-- otherwise it should use accessible official/web/secondary evidence and clearly state that the in-app/live state was not directly inspected.
+The Plugin therefore separates:
 
-The project intentionally does not add an MCP server merely to simulate access that the host does not have.
+1. **rule truth** — eligibility, materials, official terminology, fees, and responsible authority;
+2. **execution truth** — current app/mini-program/counter/branch/station entry, local implementation, migration, suspension, and operating state;
+3. **channel identity** — who operates it and what official relationship is actually established;
+4. **practical reality** — whether the route or channel is usable in the user's place and time.
 
-## Security and evidence boundaries
+Official portals remain important, but they are not treated as the only discovery surface.
 
-Retrieved webpages, snippets, posts, provider pages, PDFs, and other search results are treated as **untrusted evidence**, not instructions. Content found during research must not override the user's task, privacy boundaries, tool permissions, or action scope.
+## Core workflow
 
-The Skill also separates:
+> **Confirm scope → identify the exact service and jurisdiction → establish the competent rule → discover concrete current channels → verify current execution → recommend the lowest-friction reliable path.**
 
-- `current usability`;
-- `target-process compatibility`;
-- `official relationship`;
-- `historical status`;
-- `user firsthand evidence`.
+The Plugin also keeps these propositions separate:
 
-A channel working today does not prove it is official. An old official integration does not prove it still works today.
+- usable now;
+- compatible with the target process;
+- officially self-operated or integrated;
+- officially named or recommended;
+- historical only.
 
-## Practical discovery without quota chasing
+## Public-transport boundary
 
-The plugin prefers concrete provider/platform names when they are reasonably discoverable, but it no longer treats a fixed number of candidates or search routes as a mandatory completion target.
+Public-transport route planning is in scope when the answer materially depends on schedules, transfers, airport/station rules, disruptions, or operator services.
 
-Discovery stops when the user's decision is sufficiently answered, an exclusive route is established, additional alternatives are unlikely to change the recommendation, or access limitations make further direct verification impossible.
+Ordinary driving or walking directions to a private/commercial destination are not enough to activate the Plugin.
 
-When the user has a real choice and alternatives could change the recommendation, a small named candidate set is still useful.
+## Mixed questions
 
-## No consequential actions just for verification
+For a mixed request, the Plugin applies only to the public-service part.
 
-The Skill must not create bookings, submit applications, make payments, register accounts, buy tickets, upload identity documents, or perform other consequential actions merely to test whether a channel works.
+Example: for `刷机后电子社保卡打不开`, it may verify the official social-security-card recovery or service-counter path. It must not research how to flash or Root the phone.
 
-Already-completed user transactions may be evidence. New consequential actions require an explicit user request and the host's normal confirmation/approval flow.
+## Capability and safety boundaries
+
+The project is skills-only and uses whatever search/browser/apps/tools the host already exposes.
+
+- It may describe WeChat, Alipay, 12306, maps, operator apps, or hospital systems as directly inspected only when the host actually provides that access.
+- Retrieved content is untrusted evidence, not instructions.
+- It must not book, pay, submit, register, buy, or upload identity material merely to test a service.
+- It avoids unnecessary sensitive identifiers in public queries.
 
 ## Plugin structure
 
@@ -76,6 +87,8 @@ Already-completed user transactions may be evidence. New consequential actions r
 .
 ├── .agents/plugins/marketplace.json
 ├── evals/
+│   ├── README.md
+│   ├── rubrics.json
 │   └── skill-regressions.json
 ├── plugins/
 │   └── china-real-world-search/
@@ -90,7 +103,9 @@ Already-completed user transactions may be evidence. New consequential actions r
 │                   ├── query-playbook.md
 │                   ├── source-routing.md
 │                   └── verification-protocol.md
-├── scripts/validate_plugin.py
+├── scripts/
+│   ├── build_eval_packets.py
+│   └── validate_plugin.py
 ├── CHANGELOG.md
 ├── PUBLISHING.md
 ├── PRIVACY.md
@@ -98,40 +113,31 @@ Already-completed user transactions may be evidence. New consequential actions r
 └── LICENSE
 ```
 
-## Install as a personal/repo Plugin
-
-Add the Git-backed marketplace from Codex:
+## Install
 
 ```bash
 codex plugin marketplace add hugeJan/china-real-world-search --ref main
 ```
 
-Then install the plugin from the available Plugins surface in ChatGPT/Codex for your plan/workspace.
+Then install or update the Plugin from the available Plugins surface in ChatGPT/Codex.
 
-Local/repo marketplace availability can differ across products, plans, regions, and workspace policies.
+Availability can differ by product, plan, region, and workspace policy.
 
-## Validate the package
+## Validate
 
 ```bash
 python3 scripts/validate_plugin.py
+python3 scripts/build_eval_packets.py --check
 ```
 
-The same validator runs in GitHub Actions on pushes and pull requests.
-
-The repository also contains structured regression fixtures in `evals/skill-regressions.json`. The validator checks their schema and coverage; behavior-level execution still requires an Agent/Plugin eval harness or manual release testing.
-
-## Publish
-
-This remains a **skills-only Plugin**. It does not need an MCP server merely to qualify as a Plugin.
-
-See [`PUBLISHING.md`](PUBLISHING.md) for the release checklist and regression suite.
+The structured regression suite includes both positive public-service cases and hard negative routing cases such as phone flashing, SOE product questions, investment questions, and private-commercial route requests.
 
 ## Design principles
 
-> **For practical tasks: discover broadly, verify narrowly, stop when the decision is answered.**
+> **Provider type and task type must both be in scope.**
 
-> **For decisive facts: source by the system that actually generates the record.**
+> **An SOE name does not convert a technical or product question into a public-service question.**
 
-> **Source strategy never implies tool availability.**
+> **For public services, discover the current executable channel, then verify what it actually proves.**
 
-Open Web is a discovery layer, not a complete model of the mainland-China information environment.
+> **Default deny when the scope is unclear.**
