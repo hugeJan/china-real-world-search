@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.2.0 — Government and state public-service scope gate
+
+### Changed
+
+- Repositioned the user-facing Plugin as **China Government & Public Service Search** while retaining the existing package identifier for installation compatibility.
+- Replaced broad China-local activation with a mandatory three-part gate: in-scope provider, in-scope service task, and material current/local execution need.
+- Limited state-owned-enterprise coverage to public-facing service operations such as utilities, telecommunications, postal service, public transport, and routine state-bank service.
+- Added an explicit default-deny rule and made clear that `中国`, `官方`, `国企`, `央企`, `办理`, or a company name never activates the Skill by itself.
+- Added hard exclusions for flashing, Root, Bootloader, ROM/firmware, consumer technology, products, shopping, private commercial services, company/project/news research, and finance/investment questions.
+- Defined the public-transport boundary: activate for schedules, transfers, stations, disruptions, operator rules, and public-transport routes; do not activate for ordinary private driving/walking directions.
+- Added mixed-task isolation so an in-scope public-service recovery path does not expand into out-of-scope device modification or technical research.
+- Rewrote the source-routing, query, channel, verification, and example references around the narrowed scope.
+- Added hard-negative routing regressions for phone flashing, SOE-branded device questions, state-bank investment questions, and private route requests, plus positive government, SOE-service, and public-transport cases.
+- Updated listing metadata, README, publishing guidance, and release version to 1.2.0.
+
+### Why
+
+The previous description still allowed a broad interpretation of `mainland-China real-world questions`. In practice, that caused the Skill to activate for unrelated domestic searches such as whether a Chinese phone could be flashed. Version 1.2.0 makes the provider and requested service operation the routing boundary, not the country, brand, or presence of an official/SOE keyword.
+
 ## 1.1.3 — Eval and repository hardening
 
 ### Changed
